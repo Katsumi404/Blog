@@ -19,12 +19,12 @@ import os
 Base = declarative_base()
 app = Flask(__name__)
 print(os.getenv("SECRET_KEY"))
-app.config['SECRET_KEY'] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://fsladnmbvijyqj:3d613d1d4acdb82cc756fbf886b176641633e178406a424c772e8c6856f71cf3@ec2-54-155-35-88.eu-west-1.compute.amazonaws.com:5432/dvlcl71m56uf9"#os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
